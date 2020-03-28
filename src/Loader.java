@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Loader
 {
     String filePath;
+    int numberOfCities;
 
     public Loader(String filePath)
     {
@@ -12,8 +13,14 @@ public class Loader
     }
 
 
-    public void readFile(Problem problem) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(filePath));
+    public void readFile(Problem problem)
+    {
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(new File(filePath));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         while (scanner.hasNext())
         {
             String line = scanner.nextLine();
@@ -33,12 +40,8 @@ public class Loader
     {
         Problem problem = new Problem(11);
         Loader loader = new Loader("D:\\Szkoła\\Semestr 6\\SI\\ai-lab1-2020-tsp_dane\\TSP\\berlin11_modified.tsp");
-        try {
+        loader.readFile(problem);
 
-            loader.readFile(problem);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
     }
 }
